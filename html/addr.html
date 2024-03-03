@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thông Tin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/fonts/themify-icons/themify-icons.css">
+</head>
+
+<body>
+    <div id="main" class="relative  js-main">
+        <div id="header" class="js-header">
+            <header class="header">
+                <h1>Trang Thông Tin</h1>
+            </header>
+        </div>
+        <div id="a" class="sticky">
+            <ul id="nav">
+                <li><a href="../index.html">Trang Chủ</a></li>
+                <li><a href="congnghe.html">Công Nghệ</a></li>
+                <li><a href="khoahoc.html">Khoa Học</a></li>
+                <li><a href="addr.html">Liên Hệ</a></li>
+                <!-- End: nav -->
+
+                <!-- Begin: search buttun -->
+                <div></div>
+
+
+                <!-- End: search-buttun -->
+            </ul>
+            <div id="mobile-menu" class="mobile-menu-btn">
+                <i class="menu-icon ti-menu"></i>
+            </div>
+            <div class="search-btn">
+                <i class="SI ti-search"></i>
+            </div>
+        </div>
+        <div id="content" class="">
+            <div class="news">
+                <div id="rcm" class=" l4 mt-16 content-section">
+                    <div class="news-body">
+                        <p class="rcm-a" style="font-size: 50px; margin: 0%;"><strong>Nguyễn Trọng Quân</strong></p>
+                        <p class="rcm-a" style="font-size: 50px; margin: 0%;"><strong>Nguyễn Tuấn Kiệt</strong></p>
+                        <p class="rcm-a" style="font-size: 35px;margin: 5%;"><strong>Follow Me</strong></p>
+                        <div class="social-list" style="">
+                            <a href="https://www.facebook.com"><i class="ti-facebook"></i></a>
+                            <a href="https://www.instagram.com"><i class="ti-instagram"></i></a>
+                            <a href="https://www.youtube.com"><i class="ti-youtube"></i></a>
+                            <a href="https://www.pinterest.com"><i class="ti-pinterest-alt"></i></a>
+                            <a href="https://twitter.com"><i class="ti-twitter-alt"></i></a>
+                            <a href="https://www.google.com"><i class="ti-google"></i></a>
+                        </div>
+                    </div>
+                    <div class="video-container">
+                        <video id="myVideo" controls>
+                            <source src="../assets/video/video.mp4" type="video/mp4">
+                        </video>
+                        <button class="play-button" onclick="playVideo()">
+                            <div class="ti-control-play"></div>
+                        </button>
+
+                        <!-- Nút pause (ẩn ban đầu) -->
+                        <button class="pause-button" onclick="pauseVideo()" style="display: none;">
+                            <div class="ti-control-pause"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <p>Bản quyền © 2024 Trang Thông Tin.</p>
+        </div>
+
+    </div>
+
+
+    <script>
+        var header = document.getElementById('header');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var headerHeight = header.clientHeight;
+
+        mobileMenu.onclick = function () {
+            var isClose = header.clientHeight === headerHeight;
+            if (isClose) {
+                header.style.height = 'auto';
+            } else {
+                header.style.height = null;
+            }
+        }
+
+        var menuItems = document.querySelectorAll('#nav li a[href*="#"]')
+        for (var i = 0; i < menuItems.length; i++) {
+            var menuItem = menuItems[i];
+
+
+            menuItem.onclick = function (event) {
+                var isParentMenu = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav');
+
+                if (isParentMenu) {
+                    event.preventDefault();
+                } else {
+                    header.style.height = null;
+                }
+
+            }
+        }
+
+    </script>
+    <script>
+        var header = document.getElementById('nav');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var headerHeight = header.clientHeight;
+
+        mobileMenu.onclick = function () {
+            var isClose = header.clientHeight === headerHeight;
+            if (isClose) {
+                header.style.height = 'auto';
+            } else {
+                header.style.height = null;
+            }
+        }
+        // const closeTable = document.querySelector('.js-header')
+        // closeTable.addEventListener('click',function(event){
+        //     event.stopPropagation();
+        // })
+
+        var menuItems = document.querySelectorAll('#nav li a[href*="#"]')
+        for (var i = 0; i < menuItems.length; i++) {
+            var menuItem = menuItems[i];
+
+
+            menuItem.onclick = function (event) {
+                var isParentMenu = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav');
+
+                if (isParentMenu) {
+                    event.preventDefault();
+                } else {
+                    header.style.height = null;
+                }
+
+            }
+        }
+
+    </script>
+
+<script>
+    var video = document.getElementById("myVideo");
+    var playButton = document.querySelector(".play-button");
+    var pauseButton = document.querySelector(".pause-button");
+    var timeout;
+
+    function togglePlayPause() {
+        if (!isPlayPauseCalled) {
+            isPlayPauseCalled = true;
+            if (video.paused || video.ended) {
+                video.play();
+                showPauseButton();
+            } else {
+                video.pause();
+                hidePauseButton();
+            }
+        }
+    }
+
+    function playVideo() {
+        video.play();
+        playButton.style.display = "none"; // Ẩn nút play
+        pauseButton.style.display = "block"; // Hiển thị nút pause
+    }
+
+    function pauseVideo() {
+        video.pause();
+        playButton.style.display = "block"; // Hiển thị nút play
+        pauseButton.style.display = "none"; // Ẩn nút pause
+    }
+
+    function showPauseButton() {
+        pauseButton.style.opacity = "1";
+        clearTimeout(timeout);
+        timeout = setTimeout(hidePauseButton, 2000);
+    }
+
+    function hidePauseButton() {
+        if (!video.paused && !isMouseOverPauseButton()) {
+            pauseButton.style.opacity = "0";
+        }
+    }
+
+    function isMouseOverPauseButton() {
+        var rect = pauseButton.getBoundingClientRect();
+        var mouseX = event.clientX;
+        var mouseY = event.clientY;
+        return (
+            mouseX >= rect.left &&
+            mouseX <= rect.right &&
+            mouseY >= rect.top &&
+            mouseY <= rect.bottom
+        );
+    }
+
+    function hidePlayButton() {
+        playButton.style.display = "none";
+    }
+
+    video.onplay = function () {
+        hidePlayButton();
+        showPauseButton();
+    };
+
+    video.onpause = function () {
+        hidePauseButton();
+        showPlayButton();
+    };
+
+
+
+    video.addEventListener("mousemove", function () {
+        showPauseButton();
+    });
+
+    video.addEventListener("mouseout", function () {
+        hidePauseButton();
+    });
+
+    video.addEventListener("click", function () {
+        togglePlayPause();
+    });
+
+    video.onplay = function () {
+        playButton.style.display = "none"; // Ẩn nút play
+        pauseButton.style.display = "block"; // Hiển thị nút pause
+    };
+
+    video.onpause = function () {
+        playButton.style.display = "block"; // Hiển thị nút play
+        pauseButton.style.display = "none"; // Ẩn nút pause
+    };
+
+    video.onended = function () {
+        video.currentTime = 0; // Quay lại thời điểm ban đầu
+        video.play(); // Chạy lại video
+    };
+</script>
+</body>
+
+</html>
